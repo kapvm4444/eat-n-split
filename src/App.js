@@ -7,16 +7,30 @@ import FormSplitBill from "./components/FormSplitBill";
 
 export default function App() {
   const [friends, setFriends] = useState(initialFriends);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  const [currentFriend, setCurrentFriend] = useState(null);
+
+  function handleShowAddFriend() {
+    setShowAddFriend((val) => !val);
+  }
+
+  function handleAddFriend(newFriend) {
+    setFriends((friends) => [...friends, newFriend]);
+    setShowAddFriend(false);
+  }
 
   return (
     <div className="app">
       <div className="sidebar">
         <FriendList friends={friends} />
-        <FormAddFriend />
-        <Button>Add Friend</Button>
+        {showAddFriend && (
+          <FormAddFriend friends={friends} addFriend={handleAddFriend} />
+        )}
+        <Button onClick={handleShowAddFriend}>
+          {showAddFriend ? "Close" : "Add Friend"}
+        </Button>
       </div>
-
-      <FormSplitBill />
+      {currentFriend && <FormSplitBill />}
     </div>
   );
 }
