@@ -1,7 +1,7 @@
 import React from "react";
 import Friend from "./Friend";
 
-export default function FriendList({ friends, onSelectFriend }) {
+export default function FriendList({ friends, onSelectFriend, currentFriend }) {
   return (
     <ul>
       {friends.map((friend) => (
@@ -9,6 +9,7 @@ export default function FriendList({ friends, onSelectFriend }) {
           friend={friend}
           key={friend.id}
           onSelectFriend={onSelectFriend}
+          currentFriend={currentFriend}
         />
       ))}
     </ul>

@@ -31,6 +31,8 @@ export default function App() {
           : friend,
       ),
     );
+
+    setCurrentFriend(null);
   }
 
   return (
@@ -40,7 +42,7 @@ export default function App() {
         <FriendList
           friends={friends}
           onSelectFriend={handleCurrentFriend}
-          curentFriend={currentFriend}
+          currentFriend={currentFriend}
         />
 
         {/*Add Friend Form*/}
