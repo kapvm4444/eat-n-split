@@ -19,10 +19,31 @@ export default function App() {
     setShowAddFriend(false);
   }
 
+  function handleCurrentFriend(friend) {
+    setCurrentFriend((cur) => (cur?.id === friend.id ? null : friend));
+  }
+
+  function handleUpdateFriendBalance(val) {
+    setFriends((friends) =>
+      friends.map((friend) =>
+        currentFriend.id === friend.id
+          ? { ...friend, balance: friend.balance + val }
+          : friend,
+      ),
+    );
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendList friends={friends} />
+        {/*Friend List*/}
+        <FriendList
+          friends={friends}
+          onSelectFriend={handleCurrentFriend}
+          curentFriend={currentFriend}
+        />
+
+        {/*Add Friend Form*/}
         {showAddFriend && (
           <FormAddFriend friends={friends} addFriend={handleAddFriend} />
         )}
@@ -30,7 +51,14 @@ export default function App() {
           {showAddFriend ? "Close" : "Add Friend"}
         </Button>
       </div>
-      {currentFriend && <FormSplitBill />}
+
+      {/*Split Bill Form*/}
+      {currentFriend && (
+        <FormSplitBill
+          friend={currentFriend}
+          onSplit={handleUpdateFriendBalance}
+        />
+      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 
 export default function FormAddFriend({ addFriend }) {
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48");
 
   function handleSubmit(e) {
