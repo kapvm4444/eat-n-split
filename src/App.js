@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "./components/Button";
 import FormAddFriend from "./components/FormAddFriend";
 import FormSplitBill from "./components/FormSplitBill";
+import TitleBar from "./components/TitleBar";
 
 export default function App() {
   const [friends, setFriends] = useState(initialFriends);
@@ -36,31 +37,34 @@ export default function App() {
   }
 
   return (
-    <div className="app">
-      <div className="sidebar">
-        {/*Friend List*/}
-        <FriendList
-          friends={friends}
-          onSelectFriend={handleCurrentFriend}
-          currentFriend={currentFriend}
-        />
+    <>
+      <TitleBar />
+      <div className="app">
+        <div className="sidebar">
+          {/*Friend List*/}
+          <FriendList
+            friends={friends}
+            onSelectFriend={handleCurrentFriend}
+            currentFriend={currentFriend}
+          />
 
-        {/*Add Friend Form*/}
-        {showAddFriend && (
-          <FormAddFriend friends={friends} addFriend={handleAddFriend} />
+          {/*Add Friend Form*/}
+          {showAddFriend && (
+            <FormAddFriend friends={friends} addFriend={handleAddFriend} />
+          )}
+          <Button onClick={handleShowAddFriend}>
+            {showAddFriend ? "Close" : "Add Friend"}
+          </Button>
+        </div>
+
+        {/*Split Bill Form*/}
+        {currentFriend && (
+          <FormSplitBill
+            friend={currentFriend}
+            onSplit={handleUpdateFriendBalance}
+          />
         )}
-        <Button onClick={handleShowAddFriend}>
-          {showAddFriend ? "Close" : "Add Friend"}
-        </Button>
       </div>
-
-      {/*Split Bill Form*/}
-      {currentFriend && (
-        <FormSplitBill
-          friend={currentFriend}
-          onSplit={handleUpdateFriendBalance}
-        />
-      )}
-    </div>
+    </>
   );
 }
