@@ -3,11 +3,10 @@ import Button from "./Button";
 
 export default function FormAddFriend({ addFriend }) {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("https://i.pravatar.cc/48");
+  const [image, setImage] = useState("https://i.pravatar.cc/80");
 
   function handleSubmit(e) {
     e.preventDefault();
-
     if (!name || !image) return;
 
     const id = crypto.randomUUID();
@@ -19,27 +18,36 @@ export default function FormAddFriend({ addFriend }) {
     };
 
     addFriend(newFriend);
+    setName("");
+    setImage("https://i.pravatar.cc/80");
   }
 
   return (
-    <form className="form-add-friend" onSubmit={handleSubmit}>
-      <h2>Add Friend</h2>
+    <form className="form form-add-friend" onSubmit={handleSubmit}>
+      <h2>
+        <span>🧑‍🤝‍🧑</span> Add a Friend
+      </h2>
 
-      <label>😃Friend Name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      <div className="form-row">
+        <label>Friend Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. John"
+        />
+      </div>
 
-      <label>🌇Image URL</label>
-      <input
-        type="text"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
-      />
+      <div className="form-row">
+        <label>Image URL</label>
+        <input
+          type="text"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+        />
+      </div>
 
-      <Button>Add</Button>
+      <Button className="btn-submit" disabled={!name}>Add</Button>
     </form>
   );
 }

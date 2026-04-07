@@ -2,35 +2,19 @@ import React from "react";
 
 export default function TitleBar() {
   return (
-    <>
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          padding: "16px 0",
-          marginBottom: "500px",
-          background: "linear-gradient(45deg, #ffa94d, #ff922b)",
-          color: "linear-gradient(45deg, #ffa94d, #ff922b)",
-          zIndex: 10,
-        }}
-      >
-        <h1
-          style={{
-            margin: 0,
-            textAlign: "center",
-            color: "white",
-            fontSize: "5.4rem",
-            fontWeight: 800,
-            fontFamily: "consolas",
-            WebkitTextStroke: "3px black",
-            paintOrder: "stroke fill",
-          }}
-        >
-          Eat-n-Split
-        </h1>
-      </div>
-    </>
+    <div className="title-bar">
+      <h1>Eat-n-Split</h1>
+      <p style={{ 
+        color: 'white', 
+        fontSize: '1.5rem', 
+        fontWeight: 500, 
+        marginTop: '0.6rem', 
+        marginBottom: '0', 
+        textShadow: '0 2px 4px rgba(0,0,0,0.15)',
+        letterSpacing: '0.5px'
+      }}>
+        Keep track of shared bills and balances with friends seamlessly.
+      </p>
+    </div>
   );
 }
